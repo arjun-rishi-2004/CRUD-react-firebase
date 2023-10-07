@@ -36,3 +36,88 @@
     transform: rotate(360deg);
   }
 }
+/* Resetting some default styles for better consistency */
+body, h1, h2, h3, p, ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Set a nice font for the entire page */
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Centering content on the page */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Give a bit of spacing around elements */
+.container > div {
+  margin: 10px;
+}
+
+/* Style for buttons */
+button {
+  padding: 10px 20px;
+  background-color: #007bff; /* Nice blue color */
+  color: #fff; /* White text */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #0056b3; /* Slightly darker blue on hover */
+}
+
+/* Style for input fields */
+input {
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Style for user cards */
+.user-card {
+  background-color: #f9f9f9; /* Light gray background */
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.user-card div {
+  margin-bottom: 5px;
+}
+
+/* Style for buttons inside user cards */
+.user-card button {
+  margin: 5px;
+}
+
+/* Style for the increase age button */
+.increase-age-button {
+  background-color: #28a745; /* Nice green color for increase button */
+}
+
+.increase-age-button:hover {
+  background-color: #218838; /* Slightly darker green on hover */
+}
+
+/* Style for the delete user button */
+.delete-user-button {
+  background-color: #dc3545; /* Nice red color for delete button */
+}
+
+.delete-user-button:hover {
+  background-color: #c82333; /* Slightly darker red on hover */
+}
+
+  
