@@ -1,34 +1,32 @@
+import { useState, useEffect } from 'react';
+import { db } from "./firebase-config";
+import { collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from "firebase/firestore";
 import './App.css';
-import { useState,useEffect } from 'react';
-import {db} from "./firebase-config"
-import {collection,getDocs,addDoc,updateDoc,doc,deleteDoc} from "firebase/firestore"
-
-// ... (previous imports)
 
 function App() {
-  const [newName, setNewname] = useState("");
+  const [newName, setNewName] = useState("");
   const [newAge, setNewAge] = useState(0);
   const [users, setUsers] = useState([]);
   const userCollectionRef = collection(db, "users");
 
   const createUser = async () => {
     await addDoc(userCollectionRef, { Name: newName, Age: Number(newAge) });
-    setNewname(""); // Clear input fields after creating user
+    setNewName("");
     setNewAge(0);
-    getUsers(); // Update the list of users after creating a new one
+    getUsers();
   };
 
   const updateUser = async (id, Age) => {
     const userDoc = doc(db, "users", id);
     const newField = { Age: Age + 1 };
     await updateDoc(userDoc, newField);
-    getUsers(); // Update the list of users after updating a user
+    getUsers();
   };
 
   const deleteUser = async (id) => {
     const userDoc = doc(db, "users", id);
     await deleteDoc(userDoc);
-    getUsers(); // Update the list of users after deleting a user
+    getUsers();
   };
 
   const getUsers = async () => {
@@ -38,49 +36,45 @@ function App() {
 
   useEffect(() => {
     getUsers();
-  }, []); // Fetch users when the component mounts
+  }, []);
 
   return (
     <div className="App">
-    <h1>REACT + FIREBASE</h1>
-      <input
-        placeholder="Name"
-        value={newName}
-        onChange={(event) => {
-          setNewname(event.target.value);
-        }}
-      />
-      <input
-        type="number"
-        value={newAge}
-        onChange={(event) => {
-          setNewAge(event.target.value);
-        }}
-        placeholder="Age"
-      />
-      <button onClick={createUser}>Create User</button>
-      {users.map((user) => {
-        return (
-          <div key={user.id}>
-            <div>Name: {user.Name}</div>
-            Age: {user.Age}
-            <button
-              onClick={() => {
-                updateUser(user.id, user.Age);
-              }}
-            >
-              Increase Age
-            </button>
-            <button
-              onClick={() => {
-                deleteUser(user.id);
-              }}
-            >
-              Delete User
-            </button>
+      <div className="input-container">
+        <label htmlFor="name">Name:</label>
+        <input
+          id="name"
+          type="text"
+          value={newName}
+          onChange={(event) => setNewName(event.target.value)}
+        />
+        <label htmlFor="age">Age:</label>
+        <input
+          id="age"
+          type="number"
+          value={newAge}
+          onChange={(event) => setNewAge(event.target.value)}
+        />
+        <button onClick={createUser}>Create User</button>
+      </div>
+      <div className="user-container">
+        {users.map((user) => (
+          <div className="user-card" key={user.id}>
+            <div className="user-info">
+              <div><strong>Name:</strong> {user.Name}</div>
+              <div><strong>Age:</strong> {user.Age}</div>
+            </div>
+            <div className="user-buttons">
+              <button className="increase-age-button" onClick={() => updateUser(user.id, user.Age)}>
+                Increase Age
+              </button>
+              <button className="delete-user-button" onClick={() => deleteUser(user.id)}>
+                Delete User
+              </button>
+            </div>
           </div>
-        );
-      })}
+        ))}
+      </div>
     </div>
   );
 }
