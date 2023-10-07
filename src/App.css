@@ -119,5 +119,36 @@ input {
 .delete-user-button:hover {
   background-color: #c82333; /* Slightly darker red on hover */
 }
+.input-container {
+  margin-bottom: 20px;
+}
 
+.input-container label {
+  margin-right: 10px;
+}
+
+.user-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.user-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+  max-width: 300px;
+  width: 100%;
+}
+
+.user-card .user-info {
+  margin-bottom: 10px;
+}
+
+.user-card .user-buttons button {
+  margin: 5px;
+  }
+  
   
