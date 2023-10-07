@@ -42,6 +42,7 @@ function App() {
 
   return (
     <div className="App">
+    <h1>REACT + FIREBASE</h1>
       <input
         placeholder="Name"
         value={newName}
